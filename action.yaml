@@ -1,0 +1,27 @@
+# action.yml
+name: 'HBS Algolia'
+description: 'Build and upload the Algolia index'
+inputs:
+  algolia-app-id:
+    description: 'Algolia App ID'
+    required: true
+  algolia-api-key:
+    description: 'Algolia Admin API Key'
+    required: true
+  algolia-index-name:
+    description: 'Algolia App Index Name'
+    required: true
+  algolia-index-file:
+    description: 'Algolia Index File'
+    required: true
+    default: 'public/algolia/index.json'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.algolia-app-id }}
+    - ${{ inputs.algolia-api-key }}
+    - ${{ inputs.algolia-index-name }}
